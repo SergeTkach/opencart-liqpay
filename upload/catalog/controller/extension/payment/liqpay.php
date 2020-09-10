@@ -17,7 +17,8 @@ class ControllerExtensionPaymentLiqPay extends Controller {
         $html = $liqpay->cnb_form(array(
             'version'        => '3',
             'action'         => 'pay', 
-            'amount'         => $order_info['total'],
+            //'amount' => $order_info['total'], // was original
+            'amount' => $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false),
             'currency'       => $order_info['currency_code'],
             'description'    => 'Order: '.$order_id,
             'order_id'       => $order_id,
